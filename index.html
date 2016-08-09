@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>NYT Api</title>
+
+    <link rel="stylesheet" type="text/css" href="resources/css/bootstrap/bootstrap.css">
+
+    <script src="resources/js/libs/angular/angular.min.js"></script>
+    <script src="resources/js/libs/angular/angular-sanitize.min.js"></script>
+    <script src="resources/js/libs/angular/angular-route.min.js"></script>
+    <script src="resources/js/libs/angular/angular-resource.min.js"></script>
+    <script src="resources/js/libs/angular/angular-animate.min.js"></script>
+    <script src="resources/js/libs/angular/angular-loader.min.js"></script>
+    <!--<script src="https://cdn.firebase.com/libs/angularfire/0.9.0/angularfire.min.js"></script>-->
+    <!--<script src="https://cdn.firebase.com/js/client/2.0.4/firebase.js"></script>-->
+    <script src="resources/js/routes.js"></script>
+    <script src="resources/js/mainCtrl.js"></script>
+    <script src="resources/js/controllers/test.js"></script>
+    <script src="resources/js/controllers/lists.js"></script>
+    <!--<script src="resources/js/controllers/project.js"></script>-->
+
+    <!--<base href="/">-->
+</head>
+<body ng-controller="MainCtrl">
+    <div class="container-fluid">
+
+        <ul class="list-inline">
+            <li><a href="#/lists">NYT Bestseller List</a></li>
+        </ul>
+
+        <p>Welcome to NYT Bestseller List.</p>
+
+
+
+        <div class="col-sm-12">
+            <div ng-view></div>
+        </div>
+    </div>
+
+</body>
+</html>
