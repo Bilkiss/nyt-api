@@ -7,47 +7,69 @@
     <!--{{bookDetails.results}}-->
     <!--</li>-->
     <!--</ul>-->
-    <h1>NYT Bestseller List on the
-        {{published_date}}
+    <h1>New York Time Bestsellers List
+        <small>{{published_date}}</small>
     </h1>
 
+<div class="row">
+    <div class="col-md-6">
+        Sort by:
+        <button class="btn btn-primary btn-sm" ng-click="dynamicOrder('title')">Name</button>
+        <button class="btn btn-primary btn-sm" ng-click="dynamicOrder('author')">Author</button>
+        <button class="btn btn-primary btn-sm" ng-click="dynamicOrder('rank')">Rank</button>
+        <button class="btn btn-primary btn-sm" ng-click="dynamicOrder('rank_last_week')">Rank last week</button>
+        <small>(Currently sorting by {{sorting}} )</small>
+    </div>
+    <div class="col-md-6">
+        <form name="myForm">
+            <label for="repeatSelect"> Besteller List Names: </label>
+            <select name="repeatSelect" id="repeatSelect" ng-model="dropValue" ng-change="DropDownChanged()">
+                <option value="" disabled>Please select bestsellers names</option>
+                <option ng-repeat="bestseller in bestsellers" value="{{slugify(bestseller.list_name)}}">
+                    {{bestseller.display_name}}
+                </option>
+            </select>
+        </form>
 
-Sort by:
-    <button class="btn btn-primary" ng-click="dynamicOrder('title')">Name</button>
-    <button class="btn btn-primary" ng-click="dynamicOrder('author')">Author</button>
-    <button class="btn btn-primary" ng-click="dynamicOrder('rank')">Rank</button>
-    <button class="btn btn-primary" ng-click="dynamicOrder('rank_last_week')">Rank last week</button>
-<small>(Currently sorting by {{sorting}} )</small>
-    <ul class="list-group">
-        <!--<span ng-repeat="bookDetails in lists">-->
-        <li ng-repeat="bdetails in books | orderBy:sorting:reverse" class="list-group-item" >
-            <div >
-                <strong>Title:</strong> {{bdetails.title}}
+        <!--{{DropDownStatus}}-->
+    <p class="clear">&nbsp;</p>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <ul class="list-group">
+            <li ng-repeat="bdetails in books | orderBy:sorting:reverse" class="list-group-item" >
+                <div >
+                    <strong>Title:</strong> {{bdetails.title}}
 
                 <span ng-if="bdetails.rank_last_week < bdetails.rank">
-                    <span class="glyphicon glyphicon-plus text-success"></span>
+                    <span class="glyphicon glyphicon-arrow-up text-success"></span>
                 </span>
                 <span ng-if="bdetails.rank_last_week > bdetails.rank">
-                    <span class="glyphicon glyphicon-minus text-danger"></span>
+                    <span class="glyphicon glyphicon-arrow-down text-danger"></span>
+                </span>
+                <span ng-if="bdetails.rank_last_week == bdetails.rank">
+                    <span class="glyphicon glyphicon-resize-horizontal text-info"></span>
                 </span>
 
+                    <p>
+                        <strong>Author:</strong> {{bdetails.author}}
+                    </p>
+                    <p>
+                        <strong>Description: </strong> {{bdetails.description}}
+                    </p>
+                </div>
+
                 <div>
-                    <strong>Author:</strong> {{bdetails.author}}
+                    <strong>Rank this week: </strong> {{bdetails.rank}}
                 </div>
                 <div>
-                    <strong>Description: </strong> {{bdetails.description}}
+                    <strong>Rank last week: </strong> {{bdetails.rank_last_week}}
                 </div>
-            </div>
 
-            <div>
-                <strong>Rank this week: </strong> {{bdetails.rank}}
-            </div>
-            <div>
-                <strong>Rank last week: </strong> {{bdetails.rank_last_week}}
-            </div>
+            </li>
+        </ul>
+    </div>
+</div>
 
-        </li>
-        <!--</span>-->
-    </ul>
 
 </div>
